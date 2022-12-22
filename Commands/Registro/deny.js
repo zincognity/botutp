@@ -35,9 +35,15 @@ module.exports = {
             if(!iddc){
                 return interaction.reply({content: 'No puedes denegar a un usuario que aún no se ha registrado!'});
             } else{
-                registerSchema.deleteOne({
-                    _id: user.id
-                });
+                const borrarRegistro = async () => {
+                    const resultado = await registerSchema.deleteOne(
+                        {
+                            _id: user.id
+                        });
+                    console.log('****Resultado****', resultado)
+                }
+
+                borrarRegistro();
 
                 return interaction.reply({content: 'Los datos han sido eliminados correctamente.'});
             }
