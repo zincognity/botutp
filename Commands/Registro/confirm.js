@@ -51,7 +51,7 @@ module.exports = {
                     { name: "Razón", value: `${razon}`}
                 )
                 
-                await member.roles.remove('1054229057304277042').catch(console.error)
+                await member.roles.remove('1054229057304277042').catch(console.error);
                 await member.roles.add('1020836518509682828').catch(console.error);
                 
                 canal.send({embeds: [embed]});

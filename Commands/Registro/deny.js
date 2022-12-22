@@ -59,7 +59,8 @@ module.exports = {
                     iconURL: interaction.user.displayAvatarURL()
                 })
                 canal.send({embeds: [embeddeny]});
-
+                await member.roles.remove('1020836518509682828').catch(console.error);
+                // await member.roles.add('1020836518509682828').catch(console.error);
                 return interaction.reply({content: `${user.tag} Ha sido denegado. \nRazón: ${razon}`});
             }
         } catch (err){
