@@ -221,6 +221,7 @@ module.exports = {
 
             } catch (err) {
                 console.log(`${member.displayName} algo ha fallado!`);
+                console.log(err)
                 const embed = new EmbedBuilder()
                 .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                 .setTitle(`${member.displayName} algo ha fallado!`)
