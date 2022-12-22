@@ -103,9 +103,13 @@ module.exports = {
                     _id: member.id
                 });
 
+                let iddediscord = iddc['_id']; 
+
                 code = await registerSchema.findOne({
                     code: codigo
                 });
+
+                let codigodediscord = code['code'];
 
                 if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){
                     respuesta = true;
@@ -178,25 +182,10 @@ module.exports = {
                         canal.send({embeds: [embedconfirm]});
 
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    } else{
-                        console.log(`${member.displayName} - Su codigo ya ha sido registrado`);
-                        const embed = new EmbedBuilder()
-                        .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                        .setTitle(`${member.displayName} tu código ya ha sido registrado en el servidor!`)
-                        .setDescription('Tu **`código`** de la universidad ya ha sido registrado con otra cuenta de **`discord`**, si crees que se trata de un **`error`** contáctese con algún administrador.')
-                        .setColor('Red')
-                        .setTimestamp()
-                        .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
-                        .addFields(
-                            { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta ``24h``, por favor sea paciente."})
-                        .setFooter({ 
-                            text: `Solicitado por: ${member.displayName}`,
-                            iconURL: member.displayAvatarURL()
-                        })
-        
-                        return modalSubmitInteraction.reply({embeds: [embed]});
                     }
-                } else{
+                } else if(iddediscord === member.id){
+                    console.log(`${member.displayName} - Su codigo ya ha sido registrado`);
+
                     console.log(`${member.displayName} su ID de discord ya está registrado`);
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
@@ -212,23 +201,39 @@ module.exports = {
                             iconURL: member.displayAvatarURL()
                         })
                     return modalSubmitInteraction.reply({embeds: [embed]});
+                } else if (codigodediscord === codigo){
+                    const embed = new EmbedBuilder()
+                    .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                    .setTitle(`${member.displayName} tu código ya ha sido registrado en el servidor!`)
+                    .setDescription('Tu **`código`** de la universidad ya ha sido registrado con otra cuenta de **`discord`**, si crees que se trata de un **`error`** contáctese con algún administrador.')
+                    .setColor('Red')
+                    .setTimestamp()
+                    .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
+                    .addFields(
+                        { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta ``24h``, por favor sea paciente."})
+                    .setFooter({ 
+                        text: `Solicitado por: ${member.displayName}`,
+                        iconURL: member.displayAvatarURL()
+                    })
+    
+                    return modalSubmitInteraction.reply({embeds: [embed]});
                 }
 
             } catch (err) {
+                console.log(`${member.displayName} algo ha fallado!`);
                 const embed = new EmbedBuilder()
                 .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                .setTitle(`${member.displayName} ya has sido registrado en el servidor!`)
-                .setDescription('Tu **`discord`** y **`código`** ya han sido registrados, si crees que se trata de un **`error`** contáctese con algún administrador.')
+                .setTitle(`${member.displayName} algo ha fallado!`)
+                .setDescription('Hubo un error de datos en tu formulario, por favor, leer bien cada una de las indicaciones, si el problema persiste, tenga la opción de contactar con algún administrador.')
                 .setColor('Red')
                 .setTimestamp()
                 .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
                 .addFields(
-                    { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."})
+                        { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."})
                 .setFooter({ 
-                    text: `Solicitado por: ${member.displayName}`,
-                    iconURL: member.displayAvatarURL()
-                })
-                console.log(err);
+                        text: `Solicitado por: ${member.displayName}`,
+                        iconURL: member.displayAvatarURL()
+                    })
                 return modalSubmitInteraction.reply({embeds: [embed]});
             }
         } else{
