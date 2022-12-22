@@ -177,7 +177,7 @@ module.exports = {
                         canal.send({embeds: [embedconfirm]});
 
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    } else if (code){
+                    } else if(code){
                         let codigodediscord = code['code'];
                         if(codigodediscord === codigo){
                             const embed = new EmbedBuilder()
@@ -193,9 +193,10 @@ module.exports = {
                                 text: `Solicitado por: ${member.displayName}`,
                                 iconURL: member.displayAvatarURL()
                             })
-            
+        
                             return modalSubmitInteraction.reply({embeds: [embed]});
                         }
+                    }
                 } else if(iddc){
                     let iddediscord = iddc['_id'] ; 
                     if(iddediscord === member.id){
