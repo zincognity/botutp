@@ -28,7 +28,7 @@ module.exports = {
         const canal = interaction.guild.channels.cache.get('1054294724741189642');
 
         try{
-            let iddc = registerSchema.findOne({
+            let iddc = await registerSchema.findOne({
                 _id: user.id
             });
 
