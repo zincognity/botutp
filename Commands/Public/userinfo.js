@@ -50,11 +50,10 @@ module.exports = {
                 _id: user.id
             });
 
-            let codec = await userid['code'];
-
-            if(!codec) {
+            if(!userid) {
                 return interaction.reply({content: `El usuario ${user.username}#${user.discriminator} aún no se ha registrado!`});
             } else{
+                let codec = await userid['code'];
                 let usernamesc = usercodec['nombres'];
                 let usercarrerc = carrerc['carrera'];
                 let usersedec = sedec['sede'];
