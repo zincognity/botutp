@@ -103,13 +103,13 @@ module.exports = {
                     _id: member.id
                 });
 
-                let iddediscord = iddc['_id']; 
+                let iddediscord = iddc['_id'] || null; 
 
                 code = await registerSchema.findOne({
                     code: codigo
                 });
 
-                let codigodediscord = code['code'];
+                let codigodediscord = code['code'] || null;
 
                 if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){
                     respuesta = true;
