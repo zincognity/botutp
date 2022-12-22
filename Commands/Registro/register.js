@@ -79,6 +79,7 @@ module.exports = {
             },
             time: time
         }).catch(error => {
+            console.log(error)
             return null
         });
 
@@ -177,7 +178,7 @@ module.exports = {
                         canal.send({embeds: [embedconfirm]});
 
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    } else {
+                    } else if (code){
                         let codigodediscord = code['code'];
                         if(codigodediscord === codigo){
                             const embed = new EmbedBuilder()
@@ -198,7 +199,7 @@ module.exports = {
                         }
                     }
                 } else {
-                    let iddediscord = iddc['_id'] ; 
+                    let iddediscord = iddc['_id']; 
                     if(iddediscord === member.id){
                         console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
 
