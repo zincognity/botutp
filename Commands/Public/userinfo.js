@@ -65,6 +65,8 @@ module.exports = {
             if (userinfopublic === true) userinfopublic = 'SI';
             if (userinfopublic === false) userinfopublic = 'NO';
 
+            console.log(userinfopublic);
+
             if(userinfopublic === true){
                 if (user.id !== interaction.user.id) {
                     const embed = new EmbedBuilder()
@@ -88,8 +90,8 @@ module.exports = {
                     )
         
                     return interaction.reply({embeds: [embed]});
-            }
-            } else {
+                }
+            } else if (userinfopublic === false){
                 if (usuario.id === '245702253971898379' || user.id === interaction.user.id){
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
