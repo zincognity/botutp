@@ -41,7 +41,7 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ 
                     text: `Solicitado por: ${interaction.user.username}#${interaction.user.discriminator}`, 
-                    iconURL: `${guild.iconURL({ dynamic: true })}` 
+                    iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}` 
                 })
                 .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
                 .addFields(

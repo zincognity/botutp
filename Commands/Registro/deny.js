@@ -64,6 +64,7 @@ module.exports = {
             }
         } catch (err){
             console.log(err);
+            return interaction.reply({content: 'Ha ocurrido un error!'});
         }
 
 

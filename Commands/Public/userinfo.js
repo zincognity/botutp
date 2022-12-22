@@ -30,116 +30,116 @@ module.exports = {
                 _id: user.id
             });
 
-            let codec = userid['code'];
-
             let usercodec = await registerSchema.findOne({
                 _id: user.id
             });
-
-            let usernamesc = usercodec['nombres'];
 
             let carrerc = await registerSchema.findOne({
                 _id: user.id
             });
 
-            let usercarrerc = carrerc['carrera'];
-
             let sedec = await registerSchema.findOne({
                 _id: user.id
             });
-
-            let usersedec = sedec['sede'];
 
             let descripcionc = await registerSchema.findOne({
                 _id: user.id
             });
 
-            let userdescripcionc = descripcionc['description'];
-
             let infopublicc = await registerSchema.findOne({
                 _id: user.id
             });
 
-            let userinfopublic = infopublicc['public'];
+            let codec = userid['code'];
 
-            if (userinfopublic === true) userinfopublic = 'SI';
-            if (userinfopublic === false) userinfopublic = 'NO';
-
-            if(userinfopublic === 'SI'){
-                if (user.id !== interaction.user.id) {
-                    const embed = new EmbedBuilder()
-                    .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                    .setColor('Random')
-                    .setTimestamp()
-                    .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-                    .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
-                    .addFields(
-                        { name: "Usuario", value: `<@${user.id}>`},
-                        { name: "ID", value: user.id},
-                        { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
-                        { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
-                        { name: "Código Estudiantil", value: codec},
-                        { name: "Nombres", value: usernamesc},
-                        { name: "Carrera", value: usercarrerc},
-                        { name: "Sede", value: usersedec},
-                        { name: "Sobre mi", value: userdescripcionc},
-                        { name: "Publico", value: userinfopublic.toString()},
-                        { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
-                    )
-        
-                    return interaction.reply({embeds: [embed]});
-                } else if(user.id === interaction.user.id){
-                    const embed = new EmbedBuilder()
-                    .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                    .setColor('Random')
-                    .setTimestamp()
-                    .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
-                    .addFields(
-                        { name: "Usuario", value: `<@${user.id}>`},
-                        { name: "ID", value: user.id},
-                        { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
-                        { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
-                        { name: "Código Estudiantil", value: codec},
-                        { name: "Nombres", value: usernamesc},
-                        { name: "Carrera", value: usercarrerc},
-                        { name: "Sede", value: usersedec},
-                        { name: "Sobre mi", value: userdescripcionc},
-                        { name: "Publico", value: userinfopublic.toString()},
-                        { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
-                    )
-                    return interaction.reply({embeds: [embed]});
+            if(!codec) {
+                return interaction.reply({content: `El usuario ${user.username}#${user.discriminator} aún no se ha registrado!`});
+            } else{
+                let usernamesc = usercodec['nombres'];
+                let usercarrerc = carrerc['carrera'];
+                let usersedec = sedec['sede'];
+                let userdescripcionc = descripcionc['description'];
+                let userinfopublic = infopublicc['public'];
+    
+                if (userinfopublic === true) userinfopublic = 'SI';
+                if (userinfopublic === false) userinfopublic = 'NO';
+    
+                if(userinfopublic === 'SI'){
+                    if (user.id !== interaction.user.id) {
+                        const embed = new EmbedBuilder()
+                        .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                        .setColor('Random')
+                        .setTimestamp()
+                        .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
+                        .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+                        .addFields(
+                            { name: "Usuario", value: `<@${user.id}>`},
+                            { name: "ID", value: user.id},
+                            { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
+                            { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
+                            { name: "Código Estudiantil", value: codec},
+                            { name: "Nombres", value: usernamesc},
+                            { name: "Carrera", value: usercarrerc},
+                            { name: "Sede", value: usersedec},
+                            { name: "Sobre mi", value: userdescripcionc},
+                            { name: "Publico", value: userinfopublic.toString()},
+                            { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
+                        )
+            
+                        return interaction.reply({embeds: [embed]});
+                    } else if(user.id === interaction.user.id){
+                        const embed = new EmbedBuilder()
+                        .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                        .setColor('Random')
+                        .setTimestamp()
+                        .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+                        .addFields(
+                            { name: "Usuario", value: `<@${user.id}>`},
+                            { name: "ID", value: user.id},
+                            { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
+                            { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
+                            { name: "Código Estudiantil", value: codec},
+                            { name: "Nombres", value: usernamesc},
+                            { name: "Carrera", value: usercarrerc},
+                            { name: "Sede", value: usersedec},
+                            { name: "Sobre mi", value: userdescripcionc},
+                            { name: "Publico", value: userinfopublic.toString()},
+                            { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
+                        )
+                        return interaction.reply({embeds: [embed]});
+                    }
+                } else if (userinfopublic === 'NO'){
+                    if (usuario.id === '245702253971898379' || user.id === interaction.user.id){
+                        const embed = new EmbedBuilder()
+                        .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                        .setColor('Random')
+                        .setTimestamp()
+                        .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+                        .addFields(
+                            { name: "Usuario", value: `<@${user.id}>`},
+                            { name: "ID", value: user.id},
+                            { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
+                            { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
+                            { name: "Código Estudiantil", value: codec},
+                            { name: "Nombres", value: usernamesc},
+                            { name: "Carrera", value: usercarrerc},
+                            { name: "Sede", value: usersedec},
+                            { name: "Sobre mi", value: userdescripcionc},
+                            { name: "Publico", value: userinfopublic.toString()},
+                            { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
+                        )
+                        return interaction.reply({embeds: [embed]});
+                    } else{
+                        return interaction.reply({content: 'La información de este usuario es privada.'});
+                    }
+    
                 }
-            } else if (userinfopublic === 'NO'){
-                if (usuario.id === '245702253971898379' || user.id === interaction.user.id){
-                    const embed = new EmbedBuilder()
-                    .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                    .setColor('Random')
-                    .setTimestamp()
-                    .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
-                    .addFields(
-                        { name: "Usuario", value: `<@${user.id}>`},
-                        { name: "ID", value: user.id},
-                        { name: "Membresía en Discord", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`},
-                        { name: `Membresía en UTP 9/10 jalan`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`},
-                        { name: "Código Estudiantil", value: codec},
-                        { name: "Nombres", value: usernamesc},
-                        { name: "Carrera", value: usercarrerc},
-                        { name: "Sede", value: usersedec},
-                        { name: "Sobre mi", value: userdescripcionc},
-                        { name: "Publico", value: userinfopublic.toString()},
-                        { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
-                    )
-                    return interaction.reply({embeds: [embed]});
-                } else{
-                    return interaction.reply({content: 'La información de este usuario es privada.'});
-                }
-
             }
 
         }catch (err){
             console.log('El usuario aún no se ha registrado para poder verificarlo. Error');
             console.log(err);
-            return interaction.reply({content: 'El usuario aún no se ha registrado para poder verificarlo.'});
+            return interaction.reply({content: 'No existen datos del usuario!'});
         }
     }
 };
