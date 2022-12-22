@@ -65,9 +65,7 @@ module.exports = {
             if (userinfopublic === true) userinfopublic = 'SI';
             if (userinfopublic === false) userinfopublic = 'NO';
 
-            console.log(userinfopublic);
-
-            if(userinfopublic === true){
+            if(userinfopublic === 'SI'){
                 if (user.id !== interaction.user.id) {
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
@@ -91,7 +89,7 @@ module.exports = {
         
                     return interaction.reply({embeds: [embed]});
                 }
-            } else if (userinfopublic === false){
+            } else if (userinfopublic === 'NO'){
                 if (usuario.id === '245702253971898379' || user.id === interaction.user.id){
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
