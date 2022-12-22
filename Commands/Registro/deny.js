@@ -6,7 +6,7 @@ module.exports = {
     .setName('deny')
     .setDescription('Denegarás los datos de un usuario.')
     .addUserOption((option) => option.setName('target').setDescription('Usuario a denegar').setRequired(true))
-    .addStringOption((option) => option.setName('razon').setDescription('Razon de la negación'.setRequired(true)))
+    .addStringOption((option) => option.setName('razon').setDescription('Razon de la negación').setRequired(true))
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     /**
      * 
