@@ -177,7 +177,25 @@ module.exports = {
                         canal.send({embeds: [embedconfirm]});
 
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    }
+                    } else if (code){
+                        let codigodediscord = code['code'];
+                        if(codigodediscord === codigo){
+                            const embed = new EmbedBuilder()
+                            .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                            .setTitle(`${member.displayName} tu código ya ha sido registrado en el servidor!`)
+                            .setDescription('Tu **`código`** de la universidad ya ha sido registrado con otra cuenta de **`discord`**, si crees que se trata de un **`error`** contáctese con algún administrador.')
+                            .setColor('Red')
+                            .setTimestamp()
+                            .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
+                            .addFields(
+                                { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta ``24h``, por favor sea paciente."})
+                            .setFooter({ 
+                                text: `Solicitado por: ${member.displayName}`,
+                                iconURL: member.displayAvatarURL()
+                            })
+            
+                            return modalSubmitInteraction.reply({embeds: [embed]});
+                        }
                 } else if(iddc){
                     let iddediscord = iddc['_id'] ; 
                     if(iddediscord === member.id){
