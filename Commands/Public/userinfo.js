@@ -131,15 +131,15 @@ module.exports = {
                     )
                     return interaction.reply({embeds: [embed]});
                 } else{
-                    return interaction.reply('La información de este usuario es privada.')
+                    return interaction.reply({content: 'La información de este usuario es privada.'});
                 }
 
             }
 
         }catch (err){
-            console.log('El usuario aún no se ha registrado para poder verificarlo.');
+            console.log('El usuario aún no se ha registrado para poder verificarlo. Error');
             console.log(err);
-            return interaction.reply('El usuario aún no se ha registrado para poder verificarlo.');
+            return interaction.reply({content: 'El usuario aún no se ha registrado para poder verificarlo.'});
         }
     }
 };
