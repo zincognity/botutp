@@ -66,7 +66,7 @@ module.exports = {
             if (userinfopublic === false) userinfopublic = 'NO';
 
             if(userinfopublic === true){
-                if (user.id === interaction.user.id) {
+                if (user.id !== interaction.user.id) {
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                     .setColor('Random')
