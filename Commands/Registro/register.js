@@ -200,8 +200,6 @@ module.exports = {
                     }
                 } else if(iddc){
                     console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
-
-                    console.log(`${member.displayName} su ID de discord ya está registrado`);
                     const embed = new EmbedBuilder()
                     .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                     .setTitle(`${member.displayName} tu discord ya ha sido registrado en el servidor!`)
