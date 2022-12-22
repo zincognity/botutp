@@ -201,6 +201,7 @@ module.exports = {
                 } else {
                     let iddediscord = iddc['_id'];
                     console.log(iddediscord);
+                    console.log(member.id)
                     if(iddediscord === member.id){
                         console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
 
