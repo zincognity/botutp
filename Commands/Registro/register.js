@@ -177,7 +177,7 @@ module.exports = {
                         canal.send({embeds: [embedconfirm]});
 
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    } else if(code){
+                    } else {
                         let codigodediscord = code['code'];
                         if(codigodediscord === codigo){
                             const embed = new EmbedBuilder()
