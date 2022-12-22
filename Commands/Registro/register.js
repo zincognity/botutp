@@ -198,26 +198,24 @@ module.exports = {
                             return modalSubmitInteraction.reply({embeds: [embed]});
                         }
                     }
-                } else {
-                    if(iddediscord){
-                        console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
+                } else if(iddc){
+                    console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
 
-                        console.log(`${member.displayName} su ID de discord ya está registrado`);
-                        const embed = new EmbedBuilder()
-                        .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-                        .setTitle(`${member.displayName} tu discord ya ha sido registrado en el servidor!`)
-                        .setDescription('Tu cuenta de **`discord`** ya ha registrado una cuenta de la **`UTP`**, si crees que se trata de un **`error`** contáctese con algún administrador.')
-                        .setColor('Red')
-                        .setTimestamp()
-                        .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
-                        .addFields(
-                                { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."})
-                        .setFooter({ 
-                                text: `Solicitado por: ${member.displayName}`,
-                                iconURL: member.displayAvatarURL()
-                            })
-                        return modalSubmitInteraction.reply({embeds: [embed]});
-                    }
+                    console.log(`${member.displayName} su ID de discord ya está registrado`);
+                    const embed = new EmbedBuilder()
+                    .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
+                    .setTitle(`${member.displayName} tu discord ya ha sido registrado en el servidor!`)
+                    .setDescription('Tu cuenta de **`discord`** ya ha registrado una cuenta de la **`UTP`**, si crees que se trata de un **`error`** contáctese con algún administrador.')
+                    .setColor('Red')
+                    .setTimestamp()
+                    .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
+                    .addFields(
+                            { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."})
+                    .setFooter({ 
+                            text: `Solicitado por: ${member.displayName}`,
+                            iconURL: member.displayAvatarURL()
+                        })
+                    return modalSubmitInteraction.reply({embeds: [embed]});
                 }
 
             } catch (err) {
