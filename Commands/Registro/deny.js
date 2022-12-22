@@ -35,7 +35,7 @@ module.exports = {
             if(!iddc){
                 return interaction.reply({content: 'No puedes denegar a un usuario que aún no se ha registrado!'});
             } else{
-                iddc.deleteOne({
+                registerSchema.deleteOne({
                     _id: user.id
                 });
 
