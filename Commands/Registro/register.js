@@ -197,7 +197,7 @@ module.exports = {
                             return modalSubmitInteraction.reply({embeds: [embed]});
                         }
                     }
-                } else if(iddc){
+                } else {
                     let iddediscord = iddc['_id'] ; 
                     if(iddediscord === member.id){
                         console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
