@@ -22,7 +22,7 @@ module.exports = {
         const member = await interaction.guild.members.fetch(user.id).catch(console.error);
 
         if (!razon) razon = 'Sin razón'
-        if (user.id === interaction.user.id) return interaction.reply({content: 'No puedes denegarte a ti mismo.', ephemeral: true});
+        // if (user.id === interaction.user.id) return interaction.reply({content: 'No puedes denegarte a ti mismo.', ephemeral: true});
         if (user.id === client.user.id) return interaction.reply({content: 'No puedes denegarme a mi.', ephemeral: true});
 
         const canal = interaction.guild.channels.cache.get('1054294724741189642');
