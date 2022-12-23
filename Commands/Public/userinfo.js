@@ -63,7 +63,7 @@ module.exports = {
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
-                        return interaction.reply({embeds: [embed]});
+                        return await interaction.reply({embeds: [embed]});
                     } else if(user.id === interaction.user.id){
                         const embed = new EmbedBuilder()
                         .setTitle('Datos del Estudiante')
@@ -83,7 +83,7 @@ module.exports = {
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
-                        return interaction.reply({embeds: [embed]});
+                        return await interaction.reply({embeds: [embed]});
                     };
                 } else if(userinfopublic === 'NO'){
                     if(usuario.id === '245702253971898379' || user.id === interaction.user.id){
@@ -105,7 +105,7 @@ module.exports = {
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
-                        return interaction.reply({embeds: [embed]});
+                        return await interaction.reply({embeds: [embed]});
                     } else{
                         return interaction.reply({content: 'La información de este usuario es privada.'});
                     };
