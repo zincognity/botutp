@@ -5,7 +5,7 @@ module.exports = {
     once: true,
     async execute(member){
         try{
-            const { guild } = member;
+            const { guild } = await member;
 
             let canalBienvenida = guild.channels.cache.get('1033216478209646633');
             let canalInfo = guild.channels.cache.get('1030886936610607114');
@@ -21,7 +21,7 @@ module.exports = {
 
             let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `${member} dirígete a ${canalInfo} para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
+            await canalBienvenida.send({content: `${member} dirígete a ${canalInfo} para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
                 files: [attachment]
             }).catch((err) => {console.log(err)});
         } catch (err) {
