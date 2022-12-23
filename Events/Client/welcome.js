@@ -21,7 +21,7 @@ module.exports = {
 
             let attachment = new Discord.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `${member.user.tag}, esperamos que te agrade la estadía en el servidor ;) **``${guild.name}.``**`,
+            canalBienvenida.send({content: `<@${member.id}>, esperamos que te agrade la estadía en el servidor ;) **``${guild.name}.``**`,
             files: [attachment]
         }).catch((err) => {console.log(err)})
             console.log(`guildMemberAdd: ${member}`);
