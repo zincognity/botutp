@@ -14,6 +14,7 @@ module.exports = {
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
                 .setBackgroundUrl('https://i.imgur.com/uTitBxz.jpg', {opacity: 0.2})
                 .setBorder(true, {color: '#D3052D', size: 5})
+                .setMemberCount("")
                 .setStyle('koya')
                 .build();
 
