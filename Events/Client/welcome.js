@@ -16,7 +16,7 @@ module.exports = {
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
                 .setBackgroundUrl('https://cdn.discordapp.com/attachments/1030671839216816128/1055400600562577448/image.png', {opacity: 0.8})
                 .setBorder(true, {color: '#ffffff', size: 15})
-                .setStyle('koya')
+                .setStyle('mee6')
                 .build();
 
             let attachment = new Discord.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
