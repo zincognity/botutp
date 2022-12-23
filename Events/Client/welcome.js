@@ -20,8 +20,8 @@ module.exports = {
                 .build();
 
             let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
-
-            await canalBienvenida.send({content: `${member} dirígete a ${canalInfo} para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
+            canalBienvenida.send({ content: 'a'})
+            canalBienvenida.send({content: `${member} dirígete a ${canalInfo} para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
                 files: [attachment]
             }).catch((err) => {console.log(err)});
         } catch (err) {
