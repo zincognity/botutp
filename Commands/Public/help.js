@@ -69,7 +69,7 @@ module.exports = {
                 .setDescription('Estos comandos están destinados para todos los estudiantes de la UTP.')
                 .setTimestamp()
                 .addFields(
-                    { name: `${emojiregistro} Comandos Registro`, value: '**`/register, /confirm`**'}
+                    { name: `${emojiregistro} Comandos Registro`, value: '**`/register, /deny, /confirm`**'}
                 )
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
                 .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
