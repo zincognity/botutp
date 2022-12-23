@@ -14,7 +14,7 @@ module.exports = {
                 .setUsername(member.user.tag, {color: '#D3052D'})
                 // .setMemberCount(`Eres el número #${member.guild.memberCount}`, {color: '#ffffff'})
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
-                .setBackgroundUrl('https://media.discordapp.net/attachments/1030671839216816128/1055680005562175488/20221222_215418.jpg?width=1193&height=671', {opacity: 1})
+                .setBackgroundUrl('https://imgur.com/a/YaosIV8', {opacity: 0.5})
                 .setBorder(true, {color: '#D3052D', size: 15})
                 .setStyle('koya')
                 .build();
