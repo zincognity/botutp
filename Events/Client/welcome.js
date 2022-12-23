@@ -1,10 +1,9 @@
-const { ChatInputCommandInteraction, ActionRow, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, WelcomeScreen } = require('discord.js');
-const Discord = require('discord.js');
+const { ChatInputCommandInteraction, ActionRow, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, WelcomeScreen, AttachmentBuilder, EmbedBuilder } = require('discord.js');
 const { Welcome } = require('niby-welcomes');
 module.exports = {
     name: 'guildMemberAdd',
     once: true,
-    async execute(member, client){
+    async execute(member){
         try{
             const { guild } = member;
 
@@ -14,14 +13,14 @@ module.exports = {
                 .setUsername(member.user.tag, {color: '#D3052D'})
                 // .setMemberCount(`Eres el número #${member.guild.memberCount}`, {color: '#ffffff'})
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
-                .setBackgroundUrl('https://i.imgur.com/c0fDwQw.jpg', {opacity: 0.5})
+                .setBackgroundUrl('https://i.imgur.com/8uYwO7Y.jpg', {opacity: 0.6})
                 .setBorder(true, {color: '#D3052D', size: 15})
                 .setStyle('koya')
                 .build();
 
-            let attachment = new Discord.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
+            let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `<@${member.id}>, esperamos que te agrade la estadía en el servidor ;) **``${guild.name}.``**`,
+            canalBienvenida.send({content: `<${member}, esperamos que te agrade la estadía en el servidor **${guild.name}. ;)**`,
             files: [attachment]
         }).catch((err) => {console.log(err)})
             console.log(`guildMemberAdd: ${member}`);
