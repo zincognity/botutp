@@ -12,43 +12,22 @@ module.exports = {
      * 
      * @param {ChatInputCommandInteraction} interaction 
      */
-
     async execute(interaction, client) {
         const user = interaction.options.getUser('target');
         const { guild } = interaction;
-
         const member = await interaction.guild.members.fetch(user.id).catch(console.error);
-
         const usuario = await interaction.guild.members.fetch(interaction.user.id).catch(console.error);
 
         if (user.id === client.user.id) return interaction.reply({content: 'No puedes confirmarme a mi.', ephemeral: true});
         if (!member.roles.cache.has('1020836518509682828')) return interaction.reply({content: 'El usuario no está verificado, por ende, no hay información sobre este.', ephemeral: true})
 
         try{
-
-            let userid = await registerSchema.findOne({
-                _id: user.id
-            });
-
-            let usercodec = await registerSchema.findOne({
-                _id: user.id
-            });
-
-            let carrerc = await registerSchema.findOne({
-                _id: user.id
-            });
-
-            let sedec = await registerSchema.findOne({
-                _id: user.id
-            });
-
-            let descripcionc = await registerSchema.findOne({
-                _id: user.id
-            });
-
-            let infopublicc = await registerSchema.findOne({
-                _id: user.id
-            });
+            let userid = await registerSchema.findOne({ _id: user.id });
+            let usercodec = await registerSchema.findOne({ _id: user.id });
+            let carrerc = await registerSchema.findOne({ _id: user.id });
+            let sedec = await registerSchema.findOne({ _id: user.id });
+            let descripcionc = await registerSchema.findOne({ id: user.id });
+            let infopublicc = await registerSchema.findOne({ _id: user.id });
 
             if(!userid) {
                 return interaction.reply({content: `El usuario ${user.username}#${user.discriminator} aún no se ha registrado!`});
@@ -64,7 +43,7 @@ module.exports = {
                 if (userinfopublic === false) userinfopublic = 'NO';
     
                 if(userinfopublic === 'SI'){
-                    if (user.id !== interaction.user.id) {
+                    if(user.id !== interaction.user.id){
                         const embed = new EmbedBuilder()
                         .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                         .setColor('Random')
@@ -84,7 +63,6 @@ module.exports = {
                             { name: "Publico", value: userinfopublic.toString()},
                             { name: "Roles", value: member.roles.cache.map(r => r).join(', ')}
                         )
-            
                         return interaction.reply({embeds: [embed]});
                     } else if(user.id === interaction.user.id){
                         const embed = new EmbedBuilder()
@@ -107,8 +85,8 @@ module.exports = {
                         )
                         return interaction.reply({embeds: [embed]});
                     }
-                } else if (userinfopublic === 'NO'){
-                    if (usuario.id === '245702253971898379' || user.id === interaction.user.id){
+                } else if(userinfopublic === 'NO'){
+                    if(usuario.id === '245702253971898379' || user.id === interaction.user.id){
                         const embed = new EmbedBuilder()
                         .setAuthor({ name: `${user.tag}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                         .setColor('Random')
@@ -135,7 +113,7 @@ module.exports = {
                 }
             }
 
-        }catch (err){
+        } catch(err){
             console.log('El usuario aún no se ha registrado para poder verificarlo. Error');
             console.log(err);
             return interaction.reply({content: 'No existen datos del usuario!'});

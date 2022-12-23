@@ -1,14 +1,12 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
-const { set } = require('mongoose');
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('help')
     .setDescription('Obtendrás una lista de comandos y explicaciones de cada uno de ellos.'),
     async execute(interaction, client) {
-
+        
         const { guild } = interaction;
-
         const emoji = await guild.emojis.fetch('1055215232311623680');
         const emojipublic = await guild.emojis.fetch('1033924186550317077');
         const emojiregistro = await guild.emojis.fetch('1031750331312390284');
@@ -58,7 +56,7 @@ module.exports = {
                 .setDescription('Estos comandos están destinados para todos los usuarios del servidor.')
                 .setTimestamp()
                 .addFields(
-                    { name: `${emojipublic} Comandos Públicos`, value: '**`/help, /ping`**'}
+                    { name: `${emojipublic} Comandos Públicos`, value: '**`/help, /ping, /userinfo`**'}
                 )
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
                 .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
@@ -86,9 +84,7 @@ module.exports = {
                 .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
 
         await interaction.reply({ embeds: [embed], components: [row(false, ButtonStyle.Primary, ButtonStyle.Primary, ButtonStyle.Primary)] });
-
         const filter = i => i.customId === 'public' || 'registro' || 'moderation' && i.autor.id === member.id;
-
         const collector = interaction.channel.createMessageComponentCollector({ filter: filter, time: 15000 });
 
         collector.on('collect', async i => {
@@ -109,8 +105,6 @@ module.exports = {
         collector.on('end', collected => {
             console.log(`Collected ${collected.size} items`);
         });
-
-
     },
 };
 

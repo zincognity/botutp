@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, RoleSelectMenuInteraction, ModalBuilder, ActionRowBuilder, TextInputComponent, TextInputBuilder, TextInputStyle, ModalSubmitFields, ModalSubmitInteraction } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const registerSchema = require(`${process.cwd()}/DataBase/registerSchema`);
 
 module.exports = {
@@ -29,6 +29,7 @@ module.exports = {
                     .setLabel('Nombres Completos (Mayúsculas)')
                     .setCustomId('nombres')
                     .setStyle(TextInputStyle.Short)
+                    .setPlaceholder('Fulano Emiliano Perez Rojas')
                     .setMinLength(5)
                     .setRequired(true)
                 ),
@@ -58,7 +59,7 @@ module.exports = {
                 new ActionRowBuilder()
                 .setComponents(
                     new TextInputBuilder()
-                    .setLabel('¿Deseas ser público? - Cuéntanos sobre ti')
+                    .setLabel('¿Deseas ser público? (SI/NO) - Cuéntanos sobre ti')
                     .setCustomId('informacion')
                     .setStyle(TextInputStyle.Paragraph)
                     .setPlaceholder('SI/NO - Sobre ti')
@@ -67,9 +68,7 @@ module.exports = {
             );
 
         await interaction.showModal(modalregister);
-
         const { guild } = interaction;
-
         var time = 120 * 1000;
         
         const modalSubmitInteraction = await interaction.awaitModalSubmit({
@@ -86,7 +85,7 @@ module.exports = {
         const member = await interaction.guild.members.fetch(interaction.user.id).catch(console.error);
         const canal = interaction.guild.channels.cache.get('1054294724741189642');
 
-        if (modalSubmitInteraction) {
+        if(modalSubmitInteraction){
             let codigo = modalSubmitInteraction.fields.getTextInputValue('code');
             let nombre = modalSubmitInteraction.fields.getTextInputValue('nombres');
             let carrera = modalSubmitInteraction.fields.getTextInputValue('carrer');
@@ -100,20 +99,16 @@ module.exports = {
             let iddc;
             let code;
             try{
-                iddc = await registerSchema.findOne({
-                    _id: member.id
-                });
+                iddc = await registerSchema.findOne({ _id: member.id });
 
-                code = await registerSchema.findOne({
-                    code: codigo
-                });
+                code = await registerSchema.findOne({ code: codigo });
 
                 if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){
                     respuesta = true;
-                }
+                };
                 if(respuesta === 'NO' || respuesta === 'no' || respuesta === 'No' || respuesta === 'nO'){
                     respuesta = false;
-                } 
+                };
 
                 if(!iddc){
                     function separarRespuesta(){
@@ -122,12 +117,12 @@ module.exports = {
                         for (var i=2; i = arrayinfo.length ; i++){
                             let separarrespuesta = arrayinfo.slice(1, i).toString();
                             return separarrespuesta.replace(/,/gi, ' ');
-                        }
-                    }
+                        };
+                    };
 
                     let descripcion = separarRespuesta();
-
                     console.log('El id de dc no ha sido registrado');
+
                     if(!code){
                         console.log(`${member.displayName} - Su codigo tampoco está registrado`)
                         let newData = await registerSchema.create({
@@ -152,8 +147,8 @@ module.exports = {
                             text: `Solicitado por: ${member.displayName}`,
                             iconURL: member.displayAvatarURL()
                         })
-                        if (respuesta === true) respuesta = 'SI';
-                        if (respuesta === false) respuesta = 'NO';
+                        if(respuesta === true) respuesta = 'SI';
+                        if(respuesta === false) respuesta = 'NO';
                         const embedconfirm = new EmbedBuilder()
                         .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                         .setTitle(`${member.displayName} ha enviado sus datos!`)
@@ -176,9 +171,8 @@ module.exports = {
                         })
 
                         canal.send({embeds: [embedconfirm]});
-
                         return modalSubmitInteraction.reply({embeds: [embed]});
-                    } else if (code){
+                    } else if(code){
                         let codigodediscord = code['code'];
                         if(codigodediscord === codigo){
                             const embed = new EmbedBuilder()
@@ -194,9 +188,7 @@ module.exports = {
                                 text: `Solicitado por: ${member.displayName}`,
                                 iconURL: member.displayAvatarURL()
                             })
-        
                             return modalSubmitInteraction.reply({embeds: [embed]});
-                            
                         }
                     }
                 } else if(iddc){
@@ -216,8 +208,7 @@ module.exports = {
                         })
                     return modalSubmitInteraction.reply({embeds: [embed]});
                 }
-
-            } catch (err) {
+            } catch(err){
                 console.log(`${member.displayName} algo ha fallado!`);
                 console.log(err)
                 const embed = new EmbedBuilder()
@@ -249,8 +240,8 @@ module.exports = {
             })
             member.send({embeds: [embed]});
             console.log('Se demoró ;v');
-        }
-    }
+        };
+    },
 };
 
 // <t:${parseInt(interaction.createdTimestamp / 1000)}:R></t:$>
