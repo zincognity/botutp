@@ -21,8 +21,7 @@ module.exports = {
 
             canalDespedidas.send({content: `${member} ha dejado el servidor.`,
                 files: [attachment]
-            }).catch((err) => {console.log(err)})
-            console.log(`guildMemberRemove: ${member}`);
+            }).catch((err) => {console.log(err)});
         } catch (err) {
             return console.log(err);
         };

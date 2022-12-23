@@ -21,8 +21,7 @@ module.exports = {
 
             canalBienvenida.send({content: `${member}, esperamos que te agrade la estadía en el servidor **${guild.name}. ;)**`,
                 files: [attachment]
-            }).catch((err) => {console.log(err)})
-            console.log(`guildMemberAdd: ${member}`);
+            }).catch((err) => {console.log(err)});
         } catch (err) {
             return console.log(err);
         };
