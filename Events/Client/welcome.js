@@ -14,14 +14,14 @@ module.exports = {
                 .setUsername(member.user.tag, {color: '#D3052D'})
                 // .setMemberCount(`Eres el número #${member.guild.memberCount}`, {color: '#ffffff'})
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
-                .setBackgroundUrl('https://imgur.com/a/YaosIV8', {opacity: 0.5})
+                .setBackgroundUrl('https://i.imgur.com/c0fDwQw.jpg', {opacity: 0.5})
                 .setBorder(true, {color: '#D3052D', size: 15})
                 .setStyle('koya')
                 .build();
 
             let attachment = new Discord.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `Bienvenid@ ${member.user.tag}, espero te agrade la estadía en el servidor ${guild.name}.`,
+            canalBienvenida.send({content: `${member.user.tag}, esperamos que te agrade la estadía en el servidor ;) **``${guild.name}.``**`,
             files: [attachment]
         }).catch((err) => {console.log(err)})
             console.log(`guildMemberAdd: ${member}`);
