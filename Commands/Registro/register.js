@@ -196,6 +196,7 @@ module.exports = {
                             })
         
                             return modalSubmitInteraction.reply({embeds: [embed]});
+                            
                         }
                     }
                 } else if(iddc){
