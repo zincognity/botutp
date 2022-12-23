@@ -8,6 +8,7 @@ module.exports = {
             const { guild } = member;
 
             let canalBienvenida = guild.channels.cache.get('1033216478209646633');
+            let canalInfo = guild.channels.cache.get('1030886936610607114');
             let welcomeImage = await new Welcome()
                 .setWelcomeMessage('BIENVENID@')
                 .setUsername(member.user.tag, {color: '#D3052D'})
@@ -20,7 +21,7 @@ module.exports = {
 
             let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `${member} dirígete a <#1030886936610607114> para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
+            canalBienvenida.send({content: `${member} dirígete a ${canalInfo} para saber sobre que trata el servidor y su temática. Esperamos que te agrade la estadía en el servidor **${guild.name}.**`,
                 files: [attachment]
             }).catch((err) => {console.log(err)});
         } catch (err) {
