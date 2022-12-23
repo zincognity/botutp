@@ -13,14 +13,14 @@ module.exports = {
                 .setUsername(member.user.tag, {color: '#D3052D'})
                 // .setMemberCount(`Eres el número #${member.guild.memberCount}`, {color: '#ffffff'})
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
-                .setBackgroundUrl('https://i.imgur.com/8uYwO7Y.jpg', {opacity: 0.6})
+                .setBackgroundUrl('https://i.imgur.com/uTitBxz.jpg', {opacity: 0.6})
                 .setBorder(true, {color: '#D3052D', size: 15})
                 .setStyle('koya')
                 .build();
 
             let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
-            canalBienvenida.send({content: `<${member}, esperamos que te agrade la estadía en el servidor **${guild.name}. ;)**`,
+            canalBienvenida.send({content: `${member}, esperamos que te agrade la estadía en el servidor **${guild.name}. ;)**`,
             files: [attachment]
         }).catch((err) => {console.log(err)})
             console.log(`guildMemberAdd: ${member}`);
