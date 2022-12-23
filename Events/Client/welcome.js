@@ -4,7 +4,7 @@ const { Welcome } = require('niby-welcomes');
 module.exports = {
     name: 'guildMemberAdd',
     once: true,
-    async execute(member){
+    async execute(member, client){
         try{
             const { guild } = member;
 
@@ -19,7 +19,7 @@ module.exports = {
                 .setStyle('koya')
                 .build();
 
-            let attachment = new Discord.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
+            let attachment = new client.AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
 
             canalBienvenida.send({content: `Bienvenid@ ${member.user.tag}, espero te agrade la estadía en el servidor ${guild.name}.`,
             files: [attachment]
