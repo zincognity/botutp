@@ -6,7 +6,7 @@ const config = require('../../config.json')
 module.exports = {
     name: 'ready',
     once: true,
-    execute(client) {
+    execute(client){
         console.log('El cliente se ha iniciado.');
         
         client.user.setPresence({
@@ -28,6 +28,6 @@ module.exports = {
         }).catch((err) => {
             console.log('No se ha posido conectar a la base de datos de MongoDB');
             console.log(err);
-        })
+        });
     },
 };

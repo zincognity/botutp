@@ -5,8 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('register')
     .setDescription('Te registrarás con tus datos para ser verificado'),
-    
-    async execute(interaction, client) {
+    async execute(interaction, client){
         const modalregister = new ModalBuilder()
             .setTitle('Registro de usuario de la UTP')
             .setCustomId('registerUserModal')
@@ -103,12 +102,8 @@ module.exports = {
 
                 code = await registerSchema.findOne({ code: codigo });
 
-                if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){
-                    respuesta = true;
-                };
-                if(respuesta === 'NO' || respuesta === 'no' || respuesta === 'No' || respuesta === 'nO'){
-                    respuesta = false;
-                };
+                if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){ respuesta = true; };
+                if(respuesta === 'NO' || respuesta === 'no' || respuesta === 'No' || respuesta === 'nO'){ respuesta = false; };
 
                 if(!iddc){
                     function separarRespuesta(){
@@ -124,7 +119,7 @@ module.exports = {
                     console.log('El id de dc no ha sido registrado');
 
                     if(!code){
-                        console.log(`${member.displayName} - Su codigo tampoco está registrado`)
+                        console.log(`${member.displayName} - Su codigo tampoco está registrado`);
                         let newData = await registerSchema.create({
                             _id: member.id,
                             code: codigo.toUpperCase(),
@@ -146,7 +141,7 @@ module.exports = {
                         .setFooter({ 
                             text: `Solicitado por: ${member.displayName}`,
                             iconURL: member.displayAvatarURL()
-                        })
+                        });
                         if(respuesta === true) respuesta = 'SI';
                         if(respuesta === false) respuesta = 'NO';
                         const embedconfirm = new EmbedBuilder()
@@ -168,7 +163,7 @@ module.exports = {
                         .setFooter({ 
                             text: `Solicitado por: ${member.displayName}`,
                             iconURL: member.displayAvatarURL()
-                        })
+                        });
 
                         canal.send({embeds: [embedconfirm]});
                         return modalSubmitInteraction.reply({embeds: [embed]});
@@ -189,8 +184,8 @@ module.exports = {
                                 iconURL: member.displayAvatarURL()
                             })
                             return modalSubmitInteraction.reply({embeds: [embed]});
-                        }
-                    }
+                        };
+                    };
                 } else if(iddc){
                     console.log(`${member.displayName} - Su cuenta de Discord ya ha sido registrado`);
                     const embed = new EmbedBuilder()
@@ -201,16 +196,17 @@ module.exports = {
                     .setTimestamp()
                     .setThumbnail(`https://cdn.discordapp.com/attachments/1030651430027137054/1054434469341302844/20221219_112302.png`)
                     .addFields(
-                            { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."})
+                        { name: "Advertencia:", value: "El tiempo de espera puede ser de hasta **`24h`**, por favor sea paciente."
+                    })
                     .setFooter({ 
-                            text: `Solicitado por: ${member.displayName}`,
-                            iconURL: member.displayAvatarURL()
-                        })
+                        text: `Solicitado por: ${member.displayName}`,
+                        iconURL: member.displayAvatarURL()
+                    })
                     return modalSubmitInteraction.reply({embeds: [embed]});
-                }
+                };
             } catch(err){
                 console.log(`${member.displayName} algo ha fallado!`);
-                console.log(err)
+                console.log(err);
                 const embed = new EmbedBuilder()
                 .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
                 .setTitle(`${member.displayName} algo ha fallado!`)
@@ -223,7 +219,7 @@ module.exports = {
                 .setFooter({ 
                         text: `Solicitado por: ${member.displayName}`,
                         iconURL: member.displayAvatarURL()
-                    })
+                    });
                 return modalSubmitInteraction.reply({embeds: [embed]});
             }
         } else{
@@ -237,7 +233,7 @@ module.exports = {
             .setFooter({ 
                 text: `Solicitado por: ${member.displayName}`,
                 iconURL: member.displayAvatarURL()
-            })
+            });
             member.send({embeds: [embed]});
             console.log('Se demoró ;v');
         };

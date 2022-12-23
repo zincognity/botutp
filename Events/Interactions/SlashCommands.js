@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, ActionRow, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
+const { ChatInputCommandInteraction } = require('discord.js');
 
 module.exports = {
     name: 'interactionCreate',
@@ -6,7 +6,7 @@ module.exports = {
      * 
      * @param {ChatInputCommandInteraction} interaction 
      */
-    async execute(interaction, client) {
+    async execute(interaction, client){
 
         if (!interaction.isChatInputCommand()) return;
 
@@ -24,5 +24,5 @@ module.exports = {
             });
 
         command.execute(interaction, client);
-    }
-}
+    },
+};

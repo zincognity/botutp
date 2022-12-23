@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, ActionRow, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, WelcomeScreen, AttachmentBuilder, EmbedBuilder } = require('discord.js');
+const { AttachmentBuilder } = require('discord.js');
 const { Welcome } = require('niby-welcomes');
 module.exports = {
     name: 'guildMemberAdd',
@@ -11,7 +11,6 @@ module.exports = {
             let welcomeImage = await new Welcome()
                 .setWelcomeMessage('BIENVENID@')
                 .setUsername(member.user.tag, {color: '#D3052D'})
-                // .setMemberCount(`Eres el número #${member.guild.memberCount}`, {color: '#ffffff'})
                 .setAvatar(member.user.displayAvatarURL({size: 512, extension: 'png'}))
                 .setBackgroundUrl('https://i.imgur.com/uTitBxz.jpg', {opacity: 0})
                 .setBorder(true, {color: '#D3052D', size: 5})
@@ -26,6 +25,6 @@ module.exports = {
             console.log(`guildMemberAdd: ${member}`);
         } catch (err) {
             return console.log(err);
-        }
-    }
-}
+        };
+    },
+};

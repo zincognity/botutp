@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, RoleSelectMenuInteraction, ModalBuilder, ActionRowBuilder, TextInputComponent, TextInputBuilder, TextInputStyle, ModalSubmitFields, ModalSubmitInteraction } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 const registerSchema = require(`${process.cwd()}/DataBase/registerSchema`);
 
 module.exports = {
@@ -18,28 +18,22 @@ module.exports = {
         let razon = interaction.options.getString('razon');
         const member = await interaction.guild.members.fetch(user.id).catch(console.error);
 
-        if (!razon) razon = 'Sin razón'
-        if (user.id === interaction.user.id) return interaction.reply({content: 'No puedes denegarte a ti mismo.', ephemeral: true});
-        if (user.id === client.user.id) return interaction.reply({content: 'No puedes denegarme a mi.', ephemeral: true});
+        if(user.id === interaction.user.id) return interaction.reply({content: 'No puedes denegarte a ti mismo.', ephemeral: true});
+        if(user.id === client.user.id) return interaction.reply({content: 'No puedes denegarme a mi.', ephemeral: true});
 
         const canal = interaction.guild.channels.cache.get('1054294724741189642');
 
         try{
-            let iddc = await registerSchema.findOne({
-                _id: user.id
-            });
+            let iddc = await registerSchema.findOne({ _id: user.id });
 
             if(!iddc){
                 return interaction.reply({content: 'No puedes denegar a un usuario que aún no se ha registrado!'});
             } else{
 
                 const borrarRegistro = async () => {
-                    const resultado = await registerSchema.deleteOne(
-                        {
-                            _id: user.id
-                        });
+                    const resultado = await registerSchema.deleteOne({ _id: user.id });
                     console.log('****Resultado del usuario eliminado****', resultado)
-                }
+                };
 
                 borrarRegistro();
 
@@ -57,17 +51,16 @@ module.exports = {
                 .setFooter({ 
                     text: `Solicitado por: ${interaction.user.username}#${interaction.user.discriminator}`,
                     iconURL: interaction.user.displayAvatarURL()
-                })
+                });
                 canal.send({embeds: [embeddeny]});
                 await member.roles.remove('1020836518509682828').catch(console.error);
-                // await member.roles.add('1020836518509682828').catch(console.error);
                 return interaction.reply({content: `${user.tag} Ha sido denegado. \nRazón: ${razon}`});
             }
-        } catch (err){
+        } catch(err){
             console.log(err);
             return interaction.reply({content: 'Ha ocurrido un error!'});
-        }
+        };
 
 
-    }
+    },
 };

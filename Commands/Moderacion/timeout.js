@@ -12,19 +12,19 @@ module.exports = {
      * 
      * @param {ChatInputCommandInteraction} interaction 
      */
-    async execute(interaction, client) {
+    async execute(interaction, client){
         const user = interaction.options.getUser('target');
         const tiempo = interaction.options.getInteger('tiempo')
         const { guild } = interaction;
 
         let razon = interaction.options.getString('razon');
         const member = await interaction.guild.members.fetch(user.id).catch(console.error);
-        if (!razon) razon = 'Sin razón'
-        if (user.id === interaction.user.id) return interaction.reply({content: 'No puedes darte TimeOut a ti mismo.', ephemeral: true});
-        if (user.id === client.user.id) return interaction.reply({content: 'No puedes darme TimeOut a mi.', ephemeral: true});
-        if (member.roles.highest.position >= interaction.member.roles.highest.position) return interaction.reply({content: 'No puedes dar TimeOut a alguien con un rol igual o superior al tuyo.', ephemeral: true})
-        if (!member.kickable) return interaction.reply({content: 'No puedo banear a alguien con un rol superior al mío', ephemeral: true});
-        if (tiempo > 10000) return interaction.reply({content: 'El tiempo no puede superar los 10.000 minutos', ephemeral:true});
+        if(!razon) razon = 'Sin razón'
+        if(user.id === interaction.user.id) return interaction.reply({content: 'No puedes darte TimeOut a ti mismo.', ephemeral: true});
+        if(user.id === client.user.id) return interaction.reply({content: 'No puedes darme TimeOut a mi.', ephemeral: true});
+        if(member.roles.highest.position >= interaction.member.roles.highest.position) return interaction.reply({content: 'No puedes dar TimeOut a alguien con un rol igual o superior al tuyo.', ephemeral: true});
+        if(!member.kickable) return interaction.reply({content: 'No puedo banear a alguien con un rol superior al mío', ephemeral: true});
+        if(tiempo > 10000) return interaction.reply({content: 'El tiempo no puede superar los 10.000 minutos', ephemeral:true});
 
         const embed = new EmbedBuilder()
         .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})

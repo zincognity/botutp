@@ -12,7 +12,7 @@ module.exports = {
      * 
      * @param {ChatInputCommandInteraction} interaction 
      */
-    async execute(interaction, client) {
+    async execute(interaction, client){
         const user = interaction.options.getUser('target');
         const { guild } = interaction;
         let razon = interaction.options.getString('razon');
@@ -45,7 +45,7 @@ module.exports = {
                     { name: "Usuario", value: `${user.username}`},
                     { name: "Código Estudiantil", value: iddc['code']},
                     { name: "Razón", value: `${razon}`}
-                )
+                );
                 
                 await member.roles.remove('1054229057304277042').catch(console.error);
                 await member.roles.add('1020836518509682828').catch(console.error);
@@ -56,7 +56,7 @@ module.exports = {
         } catch(err){
             console.log(err);
             return interaction.reply({content: 'Ha ocurrido un error!'});
-        }
+        };
 
     },
 };

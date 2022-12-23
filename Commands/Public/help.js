@@ -4,8 +4,8 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('help')
     .setDescription('Obtendrás una lista de comandos y explicaciones de cada uno de ellos.'),
-    async execute(interaction, client) {
-        
+    async execute(interaction, client){
+
         const { guild } = interaction;
         const emoji = await guild.emojis.fetch('1055215232311623680');
         const emojipublic = await guild.emojis.fetch('1033924186550317077');
@@ -40,7 +40,7 @@ module.exports = {
 				.setLabel('Moderación')
 				.setStyle(estilo3)
                 .setDisabled(estado)
-            );  
+            ); 
             
         const embed = new EmbedBuilder()
                 .setTitle(`Comandos de ${guild.name} ${emoji}`)
@@ -48,7 +48,7 @@ module.exports = {
                 .setDescription('UTP Bot es un bot dedicado completamente a la comunidad estudiantil de la Universidad Tecnológica del Perú, realizado con la idea de un grupo de estudiantes de este mismo para formar una sociedad en Discord.\n\nContamos con diferentes comandos que se irán sumando y actualizando en el transcurso del tiempo.\n\nPara utilizar algún comando escribe: **`/<nombre del comando>`** \nPor ejemplo: **`/help`**\n\nPara saber más información de los comandos, interactúe con los botones que se encuentran en la parte inferior de este mensaje.')
                 .setTimestamp()
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-                .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
+                .setThumbnail(`${guild.iconURL({ dynamic: true })}`);
 
         const embedPublic = new EmbedBuilder()
                 .setTitle(`Comandos de ${guild.name} ${emoji}`)
@@ -59,7 +59,7 @@ module.exports = {
                     { name: `${emojipublic} Comandos Públicos`, value: '**`/help, /ping, /userinfo`**'}
                 )
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-                .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
+                .setThumbnail(`${guild.iconURL({ dynamic: true })}`);
 
         const embedRegistro = new EmbedBuilder()
                 .setTitle(`Comandos de ${guild.name} ${emoji}`)
@@ -70,7 +70,7 @@ module.exports = {
                     { name: `${emojiregistro} Comandos Registro`, value: '**`/register, /deny, /confirm`**'}
                 )
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-                .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
+                .setThumbnail(`${guild.iconURL({ dynamic: true })}`);
 
         const embedModeracion = new EmbedBuilder()
                 .setTitle(`Comandos de ${guild.name} ${emoji}`)
@@ -81,7 +81,7 @@ module.exports = {
                     { name: `${emojimoderacion} Comandos Registro`, value: '**`/ban, /kick, /timeout`**'}
                 )
                 .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-                .setThumbnail(`${guild.iconURL({ dynamic: true })}`)
+                .setThumbnail(`${guild.iconURL({ dynamic: true })}`);
 
         await interaction.reply({ embeds: [embed], components: [row(false, ButtonStyle.Primary, ButtonStyle.Primary, ButtonStyle.Primary)] });
         const filter = i => i.customId === 'public' || 'registro' || 'moderation' && i.autor.id === member.id;

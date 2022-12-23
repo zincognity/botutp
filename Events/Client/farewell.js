@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, ActionRow, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, WelcomeScreen, AttachmentBuilder, EmbedBuilder } = require('discord.js');
+const { AttachmentBuilder } = require('discord.js');
 const { Welcome } = require('niby-welcomes');
 module.exports = {
     name: 'guildMemberRemove',
@@ -25,6 +25,6 @@ module.exports = {
             console.log(`guildMemberRemove: ${member}`);
         } catch (err) {
             return console.log(err);
-        }
-    }
-}
+        };
+    },
+};
