@@ -15,7 +15,7 @@ module.exports = {
                 .setBackgroundUrl('https://i.imgur.com/uTitBxz.jpg', {opacity: 0})
                 .setBorder(true, {color: '#D3052D', size: 5})
                 .setMemberCount("")
-                .setStyle('mee6')
+                .setStyle('koya')
                 .build();
 
             let attachment = new AttachmentBuilder(welcomeImage, {name: `bienvenida-${member.user.tag}.png`});
