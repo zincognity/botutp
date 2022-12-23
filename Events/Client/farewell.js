@@ -2,7 +2,6 @@ const { AttachmentBuilder } = require('discord.js');
 const { Welcome } = require('niby-welcomes');
 module.exports = {
     name: 'guildMemberRemove',
-    once: true,
     async execute(member){
         try{
             const { guild } = member;
