@@ -5,7 +5,7 @@ module.exports = {
     once: true,
     async execute(member){
         try{
-            const { guild } = await member;
+            const { guild } = member;
 
             let canalBienvenida = guild.channels.cache.get('1033216478209646633');
             let canalInfo = guild.channels.cache.get('1030886936610607114');
