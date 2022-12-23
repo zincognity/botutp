@@ -58,7 +58,7 @@ module.exports = {
                 new ActionRowBuilder()
                 .setComponents(
                     new TextInputBuilder()
-                    .setLabel('¿Deseas ser público? (SI/NO) - Cuéntanos sobre ti')
+                    .setLabel('¿Deseas ser público? - Cuéntanos sobre ti')
                     .setCustomId('informacion')
                     .setStyle(TextInputStyle.Paragraph)
                     .setPlaceholder('SI/NO - Sobre ti')
