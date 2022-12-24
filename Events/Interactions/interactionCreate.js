@@ -3,13 +3,6 @@ const { InteractionType } = require('discord.js');
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction, client){
-
-
-        if (!interaction.isChatInputCommand() || !interaction.isContextMenuCommand()){
-            console.log('No hay interacción');
-            return;
-        }
-
         if(interaction.isChatInputCommand()){
             const { commands } = client;
             const { commandName } = interaction;

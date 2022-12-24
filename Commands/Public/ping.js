@@ -10,7 +10,7 @@ module.exports = {
      */
     execute(interaction){
         interaction.reply({ content: `Pong!`, ephemeral: true}).then(m => {
-            m.interaction.editReply(`:incoming_envelope: Ping Mensajes: \`${Math.floor(Date.now() / 10000000000)} ms\`\ `);
+            m.interaction.editReply(`:incoming_envelope: Mi ping es: **${interaction.ws.ping} ms**.`);
         });
     },
 };
