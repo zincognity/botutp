@@ -29,9 +29,15 @@ module.exports = {
                 return interaction.reply({content: `El usuario ${user.username}#${user.discriminator} aún no se ha registrado!`});
             } else{
                 let userinfopublic = collectInfo(user.id, 'public');
-    
+                
                 if(userinfopublic === true) userinfopublic = 'SI';
                 if(userinfopublic === false) userinfopublic = 'NO';
+
+                let buscarcode = 'code';
+                let buscarnombres = 'nombres';
+                let buscarcarrera = 'carrera';
+                let buscarsede = 'sede';
+                let buscardescription = 'description';
     
                 if(userinfopublic === 'SI'){
                     if(user.id !== interaction.user.id){
@@ -46,11 +52,11 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
-                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
-                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
-                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
-                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, buscarcode), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, buscarnombres), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, buscarcarrera), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, buscarsede), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, buscardescription), inline: false},
                             { name: "Publico:", value: userinfopublic, inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
@@ -66,11 +72,11 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
-                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
-                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
-                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
-                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, buscarcode), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, buscarnombres), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, buscarcarrera), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, buscarsede), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, buscardescription), inline: false},
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
@@ -88,11 +94,11 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
-                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
-                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
-                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
-                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, buscarcode), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, buscarnombres), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, buscarcarrera), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, buscarsede), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, buscardescription), inline: false},
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
@@ -106,7 +112,7 @@ module.exports = {
 
         } catch(err){
             console.log('El usuario aún no se ha registrado para poder verificarlo. Error');
-            console.log(err);
+            console.error(err);
             return interaction.reply({content: 'No existen datos del usuario!'});
         };
     },
