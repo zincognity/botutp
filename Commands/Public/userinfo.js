@@ -26,7 +26,7 @@ module.exports = {
             let usercodec = await registerSchema.findOne({ _id: user.id });
             let carrerc = await registerSchema.findOne({ _id: user.id });
             let sedec = await registerSchema.findOne({ _id: user.id });
-            let descripcionc = await registerSchema.findOne({ id: user.id });
+            let descripcionc = await registerSchema.findOne({ _id: user.id });
             let infopublicc = await registerSchema.findOne({ _id: user.id });
 
             if(!userid){
