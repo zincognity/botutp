@@ -81,11 +81,11 @@ async function RegisterFunction(interaction, client){
     const canal = interaction.guild.channels.cache.get('1054294724741189642');
 
     if(modalSubmitInteraction){
-        let codigo = modalSubmitInteraction.fields.getTextInputValue('code');
-        let nombre = modalSubmitInteraction.fields.getTextInputValue('nombres');
-        let carrera = modalSubmitInteraction.fields.getTextInputValue('carrer');
-        let sede = modalSubmitInteraction.fields.getTextInputValue('sede');
-        let informacion = modalSubmitInteraction.fields.getTextInputValue('informacion');
+        let codigo = await modalSubmitInteraction.fields.getTextInputValue('code');
+        let nombre = await modalSubmitInteraction.fields.getTextInputValue('nombres');
+        let carrera = await modalSubmitInteraction.fields.getTextInputValue('carrer');
+        let sede = await modalSubmitInteraction.fields.getTextInputValue('sede');
+        let informacion = await modalSubmitInteraction.fields.getTextInputValue('informacion');
 
         let [respuestas, asda] = informacion.split(' ', 1);
 
@@ -161,8 +161,8 @@ async function RegisterFunction(interaction, client){
                         iconURL: member.displayAvatarURL()
                     });
 
-                    canal.send({embeds: [embedconfirm]});
-                    return modalSubmitInteraction.reply({embeds: [embed]});
+                    await canal.send({embeds: [embedconfirm]});
+                    return await modalSubmitInteraction.reply({embeds: [embed]});
                 } else if(code){
                     let codigodediscord = code['code'];
                     if(codigodediscord === codigo){
@@ -179,7 +179,7 @@ async function RegisterFunction(interaction, client){
                             text: `Solicitado por: ${member.displayName}`,
                             iconURL: member.displayAvatarURL()
                         })
-                        return modalSubmitInteraction.reply({embeds: [embed]});
+                        return await modalSubmitInteraction.reply({embeds: [embed]});
                     };
                 };
             } else if(iddc){
@@ -198,7 +198,7 @@ async function RegisterFunction(interaction, client){
                     text: `Solicitado por: ${member.displayName}`,
                     iconURL: member.displayAvatarURL()
                 })
-                return modalSubmitInteraction.reply({embeds: [embed]});
+                return await modalSubmitInteraction.reply({embeds: [embed]});
             };
         } catch(err){
             console.log(`${member.displayName} algo ha fallado!`);
@@ -216,7 +216,7 @@ async function RegisterFunction(interaction, client){
                     text: `Solicitado por: ${member.displayName}`,
                     iconURL: member.displayAvatarURL()
                 });
-            return modalSubmitInteraction.reply({embeds: [embed]});
+            return await modalSubmitInteraction.reply({embeds: [embed]});
         }
     } else{
         const embed = new EmbedBuilder()
@@ -230,8 +230,8 @@ async function RegisterFunction(interaction, client){
             text: `Solicitado por: ${member.displayName}`,
             iconURL: member.displayAvatarURL()
         });
-        member.send({embeds: [embed]});
-        console.log('Se demoró ;v');
+        await member.send({embeds: [embed]});
+        return console.log('Se demoró ;v');
     };
 }
 

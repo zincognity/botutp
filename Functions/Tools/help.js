@@ -80,7 +80,7 @@ async function HelpFuntion(interaction, client){
 
     await interaction.reply({ embeds: [embed], components: [row(false, ButtonStyle.Primary, ButtonStyle.Primary, ButtonStyle.Primary)] });
     const filter = i => i.customId === 'public' || 'registro' || 'moderation' && i.autor.id === member.id;
-    const collector = interaction.channel.createMessageComponentCollector({ filter: filter, time: 15000 });
+    const collector = await interaction.channel.createMessageComponentCollector({ filter: filter, time: 15000 });
 
     collector.on('collect', async i => {
         if(i.customId === 'public'){
