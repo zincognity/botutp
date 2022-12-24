@@ -88,7 +88,7 @@ async function RegisterFunction(interaction, client){
         let informacion = modalSubmitInteraction.fields.getTextInputValue('informacion');
 
         let [respuestas, asda] = informacion.split(' ', 1);
- 
+
         let respuesta = respuestas.replace(/[^\w]/gi, '').toUpperCase();
 
         let iddc;
