@@ -89,7 +89,7 @@ async function RegisterFunction(interaction, client){
 
         let [respuestas, asda] = informacion.split(' ', 1);
 
-        let respuesta = respuestas.replace(/[^\w]/gi, '');
+        let respuesta = respuestas.replace(/[^\w]/gi, '').toUpperCase();
 
         let iddc;
         let code;
@@ -98,8 +98,8 @@ async function RegisterFunction(interaction, client){
 
             code = await registerSchema.findOne({ code: codigo });
 
-            if(respuesta === 'SI' || respuesta === 'si' || respuesta === 'Si' || respuesta === 'sI'){ respuesta = true; };
-            if(respuesta === 'NO' || respuesta === 'no' || respuesta === 'No' || respuesta === 'nO'){ respuesta = false; };
+            if(respuesta === 'SI'){ respuesta = true; };
+            if(respuesta === 'NO'){ respuesta = false; };
 
             if(!iddc){
                 function separarRespuesta(){
