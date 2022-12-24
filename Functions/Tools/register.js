@@ -98,8 +98,8 @@ async function RegisterFunction(interaction, client){
 
             code = await registerSchema.findOne({ code: codigo });
 
-            if(respuesta === 'SI'){ respuesta = true; };
-            if(respuesta === 'NO'){ respuesta = false; };
+            if(respuesta === 'SI'){ respuesta = true; } else{ respuesta = true; };
+            if(respuesta === 'NO'){ respuesta = false; } else{ respuesta = true; };
 
             if(!iddc){
                 function separarRespuesta(){
