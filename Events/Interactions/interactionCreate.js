@@ -3,7 +3,14 @@ const { InteractionType } = require('discord.js');
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction, client){
-        if (interaction.isChatInputCommand()){
+
+
+        if (!interaction.isChatInputCommand() || !interaction.isContextMenuCommand()){
+            console.log('No hay interacción');
+            return;
+        }
+
+        if(interaction.isChatInputCommand()){
             const { commands } = client;
             const { commandName } = interaction;
             const command = commands.get(commandName);
@@ -25,7 +32,9 @@ module.exports = {
                 console.error(err);
                 await interaction.reply({ content: 'Hubo un fallo al ejecutar este comando!', ephemeral: true });
             }
-        } else if(interaction.isContextMenuCommand()){
+        }
+        
+        if(interaction.isContextMenuCommand()){
             const { commands } = client;
             const { commandName } = interaction;
             const contextCommand = commands.get(commandName);
