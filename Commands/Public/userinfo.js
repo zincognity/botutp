@@ -1,6 +1,7 @@
 const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { Collection } = require('mongoose');
 const { db } = require('../../DataBase/registerSchema');
+const { collectInfo } = require('../../Functions/data/collectiInfo');
 const registerSchema = require(`${process.cwd()}/DataBase/registerSchema`);
 
 module.exports = {
@@ -23,21 +24,11 @@ module.exports = {
 
         try{
             let userid = await registerSchema.findOne({ _id: user.id });
-            let usercodec = await registerSchema.findOne({ _id: user.id });
-            let carrerc = await registerSchema.findOne({ _id: user.id });
-            let sedec = await registerSchema.findOne({ _id: user.id });
-            let descripcionc = await registerSchema.findOne({ _id: user.id });
-            let infopublicc = await registerSchema.findOne({ _id: user.id });
 
             if(!userid){
                 return interaction.reply({content: `El usuario ${user.username}#${user.discriminator} aún no se ha registrado!`});
             } else{
-                let codec = await userid['code'];
-                let usernamesc = usercodec['nombres'];
-                let usercarrerc = carrerc['carrera'];
-                let usersedec = sedec['sede'];
-                let userdescripcionc = descripcionc['description'];
-                let userinfopublic = infopublicc['public'];
+                let userinfopublic = collectInfo(user.id, 'public');
     
                 if(userinfopublic === true) userinfopublic = 'SI';
                 if(userinfopublic === false) userinfopublic = 'NO';
@@ -55,12 +46,12 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: codec, inline: true},
-                            { name: "Nombres:", value: usernamesc, inline: true},
-                            { name: "Carrera:", value: usercarrerc, inline: true},
-                            { name: "Sede:", value: usersedec, inline: true},
-                            { name: "Sobre mi:", value: userdescripcionc, inline: false},
-                            { name: "Publico:", value: userinfopublic.toString(), inline: true},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
+                            { name: "Publico:", value: userinfopublic, inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
                         return await interaction.reply({embeds: [embed]});
@@ -75,11 +66,11 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: codec, inline: true},
-                            { name: "Nombres:", value: usernamesc, inline: true},
-                            { name: "Carrera:", value: usercarrerc, inline: true},
-                            { name: "Sede:", value: usersedec, inline: true},
-                            { name: "Sobre mi:", value: userdescripcionc, inline: false},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
@@ -97,11 +88,11 @@ module.exports = {
                             { name: "ID:", value: user.id},
                             { name: "Membresía en Discord:", value: `<t:${parseInt(user.createdTimestamp / 1000, 10)}:R>`, inline: true},
                             { name: `Membresía en el servidor:`, value: `<t:${parseInt(member.joinedTimestamp / 1000, 10)}:R>`, inline: true},
-                            { name: "Código Estudiantil:", value: codec, inline: true},
-                            { name: "Nombres:", value: usernamesc, inline: true},
-                            { name: "Carrera:", value: usercarrerc, inline: true},
-                            { name: "Sede:", value: usersedec, inline: true},
-                            { name: "Sobre mi:", value: userdescripcionc, inline: false},
+                            { name: "Código Estudiantil:", value: collectInfo(user.id, 'code'), inline: true},
+                            { name: "Nombres:", value: collectInfo(user.id, 'nombres'), inline: true},
+                            { name: "Carrera:", value: collectInfo(user.id, 'carrera'), inline: true},
+                            { name: "Sede:", value: collectInfo(user.id, 'sede'), inline: true},
+                            { name: "Sobre mi:", value: collectInfo(user.id, 'description'), inline: false},
                             { name: "Publico:", value: userinfopublic.toString(), inline: true},
                             { name: "Roles:", value: member.roles.cache.map(r => r).join(', '), inline: true}
                         );
