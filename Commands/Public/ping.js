@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, GatewayIntentBits } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,7 +10,7 @@ module.exports = {
      */
     execute(interaction){
         interaction.reply({ content: `Pong!`, ephemeral: true}).then(m => {
-            m.interaction.editReply(`:incoming_envelope: Mi ping es: **${Date.now() - m.createdTimestamp} ms**. `);
+            m.interaction.editReply(`:incoming_envelope: Mi ping es: **${Date.now() - m.interaction.createdTimestamp} ms**. `);
         });
     },
 };
