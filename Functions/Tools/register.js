@@ -156,7 +156,7 @@ async function RegisterFunction(interaction, client){
                         { name: "Nombres", value: nombre.toUpperCase()},
                         { name: "Carrera", value: carrera.toUpperCase()},
                         { name: "Sede", value: sede.toUpperCase()},
-                        { name: "Descripcion", value: `${separarRespuesta()}`},
+                        { name: "Descripcion", value: `${descripcion}`},
                         { name: "Información Pública", value: `${respuesta}`}
                     )
                     .setFooter({ 
