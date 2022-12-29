@@ -12,20 +12,15 @@ module.exports = {
      * @param {ChatInputCommandInteraction} interaction 
      */
     async execute(interaction, client){
-        const canal = interaction.options.getChannel('canal');
-        const { guild } = interaction;
+        try{
+            const canal = interaction.options.getChannel('canal');
+            let mensaje = interaction.options.getString('mensaje');
 
-        let mensaje = interaction.options.getString('mensaje');
-
-        // const embed = new EmbedBuilder()
-        // .setAuthor({ name: `${guild.name}`, iconURL: `${guild.iconURL({ dynamic: true })}`})
-        // .setTitle(`${user.tag} ha sido kickeado del servidor.`)
-        // .setColor('Red')
-        // .setTimestamp()
-        // .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
-        // .setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
-        // .addFields({ name: `Razon`, value: `${razon}`})
-
-        await canal.send({content: mensaje}).catch(console.error)
+            await interaction.reply({content: 'Mensaje enviado!'});
+            return await canal.send({content: mensaje}).catch(console.error);
+        } catch(err){
+            interaction.reply({content: 'Oh no!, algo ha fallado'})
+            return console.error(err);
+        }
     },
 };
