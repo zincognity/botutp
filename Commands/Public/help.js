@@ -5,6 +5,10 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('help')
     .setDescription('Obtendrás una lista de comandos y explicaciones de cada uno de ellos.'),
+    /**
+     * 
+     * @param {ChatInputCommandInteraction} interaction 
+     */
     async execute(interaction, client){
         HelpFuntion(interaction, client);
     },
