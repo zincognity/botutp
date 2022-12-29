@@ -73,7 +73,7 @@ async function HelpFuntion(interaction, client){
             .setDescription('Estos comandos están destinados para los moderadores del servidor.')
             .setTimestamp()
             .addFields(
-                { name: `${emojimoderacion} Comandos Registro`, value: '**`/ban, /kick, /timeout`**'}
+                { name: `${emojimoderacion} Comandos Moderación`, value: '**`/ban, /kick, /say, /timeout`**'}
             )
             .setFooter({ text: `${client.user.username}`, iconURL: `${guild.iconURL({ dynamic: true })}` })
             .setThumbnail(`${guild.iconURL({ dynamic: true })}`);
