@@ -113,8 +113,8 @@ async function RegisterFunction(interaction, client){
 
                 let descripcion = separarRespuesta();
 
-                if(!descripcion) descripcion='Sin descripción';
-                
+                if(!descripcion) descripcion = 'Sin descripción';
+
                 console.log('El id de dc no ha sido registrado');
 
                 if(!code){

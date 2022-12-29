@@ -1,8 +1,10 @@
 {
     "id-de-dc":{
-        "Codigo": "",
-        "Nombres": "",
-        "Carrera": "",
-        "Sede": ""
+        "code": "",
+        "nombres": "",
+        "carrera": "",
+        "sede": "",
+        "description": "",
+        "public": ""
     } 
 }

@@ -85,7 +85,7 @@ async function HelpFuntion(interaction, client){
     collector.on('collect', async i => {
         if(i.customId === 'public'){
             if(member.id !== i.user.id) return;
-            return await i.update({ embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] });
+            return await i.update({ timeout: parseInt(5 * 1000), embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] });
         }
         if(i.customId === 'registro'){
             if(member.id !== i.user.id) return;
