@@ -83,17 +83,17 @@ async function HelpFuntion(interaction, client){
     const collector = await interaction.channel.createMessageComponentCollector({ filter: filter });
 
     collector.on('collect', async i => {
-        if(i.customId === 'public'){
-            if(member.id !== i.user.id) return;
-            return await i.update({ embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] })
-        }
-        if(i.customId === 'registro'){
-            if(member.id !== i.user.id) return;
-            return await i.update({ embeds: [embedRegistro], components: [row(false, ButtonStyle.Success, ButtonStyle.Secondary, ButtonStyle.Success)] });
-        }
-        if(i.customId === 'moderation'){
-            if(member.id !== i.user.id) return;
-            return await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
+        if(member.id !== i.user.id) return i.update({components: 'si'});
+        else{
+            if(i.customId === 'public'){
+                return await i.update({ embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] })
+            }
+            if(i.customId === 'registro'){
+                return await i.update({ embeds: [embedRegistro], components: [row(false, ButtonStyle.Success, ButtonStyle.Secondary, ButtonStyle.Success)] });
+            }
+            if(i.customId === 'moderation'){
+                return await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
+            }
         }
     });
 
