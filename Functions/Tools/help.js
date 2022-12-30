@@ -95,8 +95,8 @@ async function HelpFuntion(interaction, client){
             if(member.id !== i.user.id) return;
             return await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
         }
+        setTimeout(() => i.deleteReply(), 20000);
     });
-    setTimeout(() => collected.deleteReply(), 20000);
 };
 
 module.exports = { HelpFuntion };
