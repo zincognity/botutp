@@ -96,11 +96,7 @@ async function HelpFuntion(interaction, client){
             return await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
         }
     });
-
-    collector.on('end', collected => {
-        console.log(`Collected ${collected.size} items`);
-        setTimeout(() => collected.deleteReply(), 20000);
-    });
+    setTimeout(() => collected.deleteReply(), 20000);
 };
 
 module.exports = { HelpFuntion };
