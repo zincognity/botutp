@@ -85,21 +85,21 @@ async function HelpFuntion(interaction, client){
     collector.on('collect', async i => {
         if(i.customId === 'public'){
             if(member.id !== i.user.id) return;
-            await i.update({ embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] });
+            return await i.update({ embeds: [embedPublic], components: [row(false, ButtonStyle.Secondary, ButtonStyle.Success, ButtonStyle.Success)] });
         }
         if(i.customId === 'registro'){
             if(member.id !== i.user.id) return;
-            await i.update({ embeds: [embedRegistro], components: [row(false, ButtonStyle.Success, ButtonStyle.Secondary, ButtonStyle.Success)] });
+            return await i.update({ embeds: [embedRegistro], components: [row(false, ButtonStyle.Success, ButtonStyle.Secondary, ButtonStyle.Success)] });
         }
         if(i.customId === 'moderation'){
             if(member.id !== i.user.id) return;
-            await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
+            return await i.update({ embeds: [embedModeracion], components: [row(false, ButtonStyle.Success, ButtonStyle.Success , ButtonStyle.Secondary)] });
         }
-        setTimeout(() => i.deleteReply(), 20000);
     });
 
     collector.on('end', collected => {
         console.log(`Collected ${collected.size} items`);
+        setTimeout(() => collected.deleteReply(), 20000);
     });
 };
 
