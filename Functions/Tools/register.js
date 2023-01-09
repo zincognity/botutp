@@ -164,7 +164,6 @@ async function RegisterFunction(interaction, client){
                         iconURL: member.displayAvatarURL()
                     });
 
-                    await interaction.reply({content: 'El formulario se ha abierto correctamente', ephemeral: true})
                     await canal.send({embeds: [embedconfirm]});
                     return await modalSubmitInteraction.reply({embeds: [embed]});
                 } else if(code){
