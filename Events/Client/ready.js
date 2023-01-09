@@ -8,6 +8,10 @@ module.exports = {
     once: true,
     execute(client){
         console.log('El cliente se ha iniciado.');
+
+        const canal = client.channels.cache.get('1030899486173708313');
+
+        canal.send({content: 'Hola si, ando encendio uwu'});
         
         client.user.setPresence({
             activities: [{
